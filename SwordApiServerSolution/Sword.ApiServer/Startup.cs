@@ -24,12 +24,26 @@ namespace Sword.ApiServer
         {
             services.AddMvcCore();
 
+            // nuget IdentityServer4.AccessTokenValidation
+            //services.AddAuthentication("Bearer")
+            //    .AddIdentityServerAuthentication(options =>
+            //    {
+            //        options.Authority = "http://localhost:7200";
+            //        options.RequireHttpsMetadata = false;
+            //        options.ApiName = "swordApi";
+            //    });
+
             services.AddAuthentication("Bearer")
-                .AddIdentityServerAuthentication(options =>
+                .AddJwtBearer("Bearer", options =>
                 {
                     options.Authority = "http://localhost:7200";
                     options.RequireHttpsMetadata = false;
-                    options.ApiName = "swordApi";
+
+                    options.Audience = "swordApi";
+                    // 每隔多久验证一下token
+                    options.TokenValidationParameters.ClockSkew = TimeSpan.FromMinutes(1);
+                    // 要求 token 有过期时间
+                    options.TokenValidationParameters.RequireExpirationTime = true;
                 });
 
             services.AddAuthorization();
