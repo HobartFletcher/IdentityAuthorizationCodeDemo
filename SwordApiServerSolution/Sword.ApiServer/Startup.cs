@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,26 +26,27 @@ namespace Sword.ApiServer
             services.AddMvcCore();
 
             // nuget IdentityServer4.AccessTokenValidation
-            //services.AddAuthentication("Bearer")
-            //    .AddIdentityServerAuthentication(options =>
-            //    {
-            //        options.Authority = "http://localhost:7200";
-            //        options.RequireHttpsMetadata = false;
-            //        options.ApiName = "swordApi";
-            //    });
-
-            services.AddAuthentication("Bearer")
-                .AddJwtBearer("Bearer", options =>
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                .AddIdentityServerAuthentication(options =>
                 {
                     options.Authority = "http://localhost:7200";
                     options.RequireHttpsMetadata = false;
-
-                    options.Audience = "swordApi";
-                    // 每隔多久验证一下token
-                    options.TokenValidationParameters.ClockSkew = TimeSpan.FromMinutes(1);
-                    // 要求 token 有过期时间
-                    options.TokenValidationParameters.RequireExpirationTime = true;
+                    options.ApiName = "swordApi";
+                    options.ApiSecret = "sword api secret"; // 在鉴权中心 ApiResource 配置 secret 
                 });
+
+            //services.AddAuthentication("Bearer")
+            //    .AddJwtBearer("Bearer", options =>
+            //    {
+            //        options.Authority = "http://localhost:7200";
+            //        options.RequireHttpsMetadata = false;
+
+            //        options.Audience = "swordApi";
+            //        // 每隔多久验证一下token
+            //        options.TokenValidationParameters.ClockSkew = TimeSpan.FromMinutes(1);
+            //        // 要求 token 有过期时间
+            //        options.TokenValidationParameters.RequireExpirationTime = true;
+            //    });
 
             services.AddAuthorization();
         }

@@ -58,4 +58,3 @@ D:\CodeDemos\Id4demo\102AuthCodeDemo\AuthCenterSolution\AuthCenter\obj\Debug\net
 D:\CodeDemos\Id4demo\102AuthCodeDemo\AuthCenterSolution\AuthCenter\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Redirect.cshtml.g.cs
 D:\CodeDemos\Id4demo\102AuthCodeDemo\AuthCenterSolution\AuthCenter\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ScopeListItem.cshtml.g.cs
 D:\CodeDemos\Id4demo\102AuthCodeDemo\AuthCenterSolution\AuthCenter\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationSummary.cshtml.g.cs
-D:\CodeDemos\Id4demo\102AuthCodeDemo\AuthCenterSolution\AuthCenter\obj\Debug\netcoreapp3.1\AuthCenter.csprojAssemblyReference.cache
